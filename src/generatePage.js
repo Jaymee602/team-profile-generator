@@ -1,8 +1,19 @@
 const Intern = require("../lib/Intern")
 const Manager = require("../lib/Manager")
 
-const generatePage = (team) => {
-    return `
+const writeFile = (data) => {
+    fs.writeFile('../dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("What a great team you've got! View your team profile in dist/index.html.")
+        }
+    })
+};  
+
+const generatePage = (engineers, interns) => {
+    let html = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -18,55 +29,50 @@ const generatePage = (team) => {
         </header>
         <section class="container p-5">
             <div class="row justify-content-between">
-            ${team.filter(team => team instanceof Manager)
-                .map(manager => `
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
                     <div class="badge badge-primary">
-                        <h2 class="card-title">${manager.name}</h2>
+                        <h2 class="card-title">${Manager.name}</h2>
                         <h4>- Manager -</h4>
                     </div>
                     <div class="card-body list-group">
-                        <p class="list-group-item">${manager.id}</p>
+                        <p class="list-group-item">${Manager.id}</p>
                         <p class="list-group-item">Email:
-                            <a href="${manager.email}" class="alert-link">${manager.email}</a>
+                            <a href="${Manager.email}" class="alert-link">${Manager.email}</a>
                         </p>
-                        <p class="list-group-item">${manager.officeNumber}</p>
+                        <p class="list-group-item">${Manager.officeNumber}</p>
                     </div>
-                </div>`
-            )}
+                </div>
 
-            ${team.filter(team => team instanceof Engineer)
-                .map(engineer => `
+            ${engineers.forEach(Engineer =>`
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
                     <div class="badge badge-primary">
-                        <h2 class="card-title">${engineer.name}</h2>
+                        <h2 class="card-title">${Engineer.name}</h2>
                         <h4>- Engineer -</h4>
                     </div>
                     <div class="card-body list-group">
-                        <p class="list-group-item">${engineer.id}</p>
+                        <p class="list-group-item">${Engineer.id}</p>
                         <p class="list-group-item">Email:
-                            <a href="${engineer.email}" class="alert-link">${engineer.email}</a>
+                            <a href="${Engineer.email}" class="alert-link">${Engineer.email}</a>
                         </p>
                         <p class="list-group-item">Github:
-                            <a href="https://github.com/${engineer.github}" class="alert-link">${engineer.github}</a>
+                            <a href="https://github.com/${Engineer.github}" class="alert-link">${Engineer.github}</a>
                         </p>
                     </div>
                 </div>`
             )}
     
-            ${team.filter(team => team instanceof Intern)
-                .map(intern => `
+            ${interns.forEach(Intern =>`
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
                     <div class="badge badge-primary">
-                        <h2 class="card-title">${intern.name}</h2>
+                        <h2 class="card-title">${Intern.name}</h2>
                         <h4>- Intern -</h4>
                     </div>
                     <div class="card-body list-group">
-                        <p class="list-group-item">${intern.id}</p>
+                        <p class="list-group-item">${Intern.id}</p>
                         <p class="list-group-item">Email:
-                            <a href="${intern.email}" class="alert-link">${intern.email}</a>
+                            <a href="${Intern.email}" class="alert-link">${Intern.email}</a>
                         </p>
-                        <p class="list-group-item">School: ${intern.school}</p>
+                        <p class="list-group-item">School: ${Intern.school}</p>
                     </div>
                 </div>`
             )}
@@ -75,4 +81,10 @@ const generatePage = (team) => {
         </section>
     </body>
     </html>`
+
+    writeFile(html);
 };
+
+
+
+module.exports = generatePage; 
