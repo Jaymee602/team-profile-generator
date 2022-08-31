@@ -11,4 +11,3 @@ Generate a profile page for your coding team!
 * Jest
 
 ## How To Use (Video Walk-Through)
-**https://watch.screencastify.com/v/yf0Kp8kxYi1UjU4qS4ME**
