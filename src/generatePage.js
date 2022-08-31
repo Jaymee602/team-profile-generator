@@ -1,16 +1,7 @@
 const Intern = require("../lib/Intern")
 const Manager = require("../lib/Manager")
 
-const writeFile = (data) => {
-    fs.writeFile('../dist/index.html', data, err => {
-        if (err) {
-            console.log(err);
-            return;
-        } else {
-            console.log("What a great team you've got! View your team profile in dist/index.html.")
-        }
-    })
-};  
+
 
 const generatePage = (engineers, interns) => {
     let html = `
@@ -81,8 +72,6 @@ const generatePage = (engineers, interns) => {
         </section>
     </body>
     </html>`
-
-    writeFile(html);
 };
 
 

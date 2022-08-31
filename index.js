@@ -242,7 +242,16 @@ const addTeamMember = () => {
     });
 };
 
-
+const writeFile = (data) => {
+    fs.writeFile('./dist/index.html', data, err => {
+       if (err) {
+           console.log(err);
+           return;
+       } else {
+           console.log("What a great team you've got! View your team profile in dist/index.html.")
+       }
+   })
+};  
     
 function init() {
     managerQuestions()
