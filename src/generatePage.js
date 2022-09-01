@@ -1,7 +1,7 @@
 const Manager = require("../lib/Manager")
 
 const generatePage = (manager, engineers, interns) => {
-    `
+    return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -71,7 +71,6 @@ const generatePage = (manager, engineers, interns) => {
         </section>
     </body>
     </html>`
-    return;
 };
 
 
