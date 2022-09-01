@@ -1,7 +1,7 @@
 # Team Profile Generator
 
 ## Purpose
-Generate a profile page for your coding team!
+Generate a profile page for your team!
 
 ## Built with
 * JavaScript

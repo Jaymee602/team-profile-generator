@@ -243,7 +243,7 @@ const addTeamMember = () => {
 };
 
 const writeFile = (data) => {
-    fs.writeFile('./dist/index.html', data, err => {
+    fs.writeFileSync('./dist/index.html', data, err => {
        if (err) {
            console.log(err);
            return;
@@ -256,8 +256,8 @@ const writeFile = (data) => {
 function init() {
     managerQuestions()
         .then(addTeamMember)
-            .then((manager, engineers, interns) => {
-                return generatePage(manager, engineers, interns);
+            .then(() => {
+                return generatePage();
             })
         .then(data => {
             return writeFile(data);

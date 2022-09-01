@@ -1,10 +1,7 @@
-const Intern = require("../lib/Intern")
 const Manager = require("../lib/Manager")
 
-
-
-const generatePage = (engineers, interns) => {
-    let html = `
+const generatePage = (manager, engineers, interns) => {
+    `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -20,6 +17,7 @@ const generatePage = (engineers, interns) => {
         </header>
         <section class="container p-5">
             <div class="row justify-content-between">
+            ${manager.forEach(Manager =>`
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
                     <div class="badge badge-primary">
                         <h2 class="card-title">${Manager.name}</h2>
@@ -32,7 +30,8 @@ const generatePage = (engineers, interns) => {
                         </p>
                         <p class="list-group-item">${Manager.officeNumber}</p>
                     </div>
-                </div>
+                </div>`
+            )}
 
             ${engineers.forEach(Engineer =>`
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
@@ -72,6 +71,7 @@ const generatePage = (engineers, interns) => {
         </section>
     </body>
     </html>`
+    return;
 };
 
 
