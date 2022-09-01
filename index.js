@@ -74,7 +74,7 @@ const managerQuestions = () => {
         const  { name, id, email, officeNumber } = managerAnswers;
         const newManager = new Manager (name, id, email, officeNumber);
         manager.push(newManager);
-        console.log(newManager)
+        console.log(manager)
     })
 };
 
@@ -236,7 +236,7 @@ const addTeamMember = () => {
         } else if(answer.addMember === 'Intern'){
             return internQuestions();
         } else if (answer.addMember === 'I am done adding team members'){
-            return;
+            return generatePage(manager, engineers, interns);
         }
 
     });
@@ -256,9 +256,6 @@ const writeFile = (data) => {
 function init() {
     managerQuestions()
         .then(addTeamMember)
-            .then(() => {
-                return generatePage();
-            })
         .then(data => {
             return writeFile(data);
         })

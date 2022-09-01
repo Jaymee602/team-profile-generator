@@ -1,6 +1,6 @@
-const Manager = require("../lib/Manager")
-
 const generatePage = (manager, engineers, interns) => {
+    
+    console.log(interns, engineers, manager)
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -13,56 +13,56 @@ const generatePage = (manager, engineers, interns) => {
     </head>
     <body>
         <header class="bg-success text-white text-center p-5">
-            <h1>My Team</h1>
+             <h1>My Team</h1>
         </header>
         <section class="container p-5">
             <div class="row justify-content-between">
-            ${manager.forEach(Manager =>`
+            ${manager.map(({ name, id, email, officeNumber }) =>`
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
                     <div class="badge badge-primary">
-                        <h2 class="card-title">${Manager.name}</h2>
+                        <h2 class="card-title">${name}</h2>
                         <h4>- Manager -</h4>
                     </div>
                     <div class="card-body list-group">
-                        <p class="list-group-item">${Manager.id}</p>
+                        <p class="list-group-item">${id}</p>
                         <p class="list-group-item">Email:
-                            <a href="${Manager.email}" class="alert-link">${Manager.email}</a>
+                            <a href="${email}" class="alert-link">${email}</a>
                         </p>
-                        <p class="list-group-item">${Manager.officeNumber}</p>
+                        <p class="list-group-item">${officeNumber}</p>
                     </div>
                 </div>`
             )}
 
-            ${engineers.forEach(Engineer =>`
+            ${engineers.map(({ name, id, email, github }) =>`
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
                     <div class="badge badge-primary">
-                        <h2 class="card-title">${Engineer.name}</h2>
+                        <h2 class="card-title">${name}</h2>
                         <h4>- Engineer -</h4>
                     </div>
                     <div class="card-body list-group">
-                        <p class="list-group-item">${Engineer.id}</p>
+                        <p class="list-group-item">${id}</p>
                         <p class="list-group-item">Email:
-                            <a href="${Engineer.email}" class="alert-link">${Engineer.email}</a>
+                            <a href="${email}" class="alert-link">${email}</a>
                         </p>
                         <p class="list-group-item">Github:
-                            <a href="https://github.com/${Engineer.github}" class="alert-link">${Engineer.github}</a>
+                            <a href="https://github.com/${github}" class="alert-link">${github}</a>
                         </p>
                     </div>
                 </div>`
             )}
     
-            ${interns.forEach(Intern =>`
+            ${interns.map(({ name, id, email, school }) =>`
                 <div class="card shadow bg-light m-3 col-12 col-md-5 col-lg-3">
                     <div class="badge badge-primary">
-                        <h2 class="card-title">${Intern.name}</h2>
+                        <h2 class="card-title">${name}</h2>
                         <h4>- Intern -</h4>
                     </div>
                     <div class="card-body list-group">
-                        <p class="list-group-item">${Intern.id}</p>
+                        <p class="list-group-item">${id}</p>
                         <p class="list-group-item">Email:
-                            <a href="${Intern.email}" class="alert-link">${Intern.email}</a>
+                            <a href="${email}" class="alert-link">${email}</a>
                         </p>
-                        <p class="list-group-item">School: ${Intern.school}</p>
+                        <p class="list-group-item">School: ${school}</p>
                     </div>
                 </div>`
             )}
@@ -71,6 +71,7 @@ const generatePage = (manager, engineers, interns) => {
         </section>
     </body>
     </html>`
+    
 };
 
 
